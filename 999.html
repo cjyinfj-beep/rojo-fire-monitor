@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消防监测系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 { color: #4caf50; margin-bottom: 20px; }
+        .status { color: #666; margin-bottom: 30px; }
+        .card {
+            background: #151d2f;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+        }
+        .card h3 { color: #4caf50; margin-bottom: 10px; font-size: 16px; }
+        .card p { color: #888; font-size: 14px; line-height: 1.6; }
+        .endpoint {
+            background: #1a2340;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #4caf50;
+            margin-top: 8px;
+            word-break: break-all;
+        }
+        .green { color: #4caf50; }
+        .gray { color: #666; }
+    </style>
+</head>
+<body>
+    <h1>🔥 消防监测系统</h1>
+    <p class="status">服务运行正常</p>
+
+    <div class="card">
+        <h3>📡 设备数据 API</h3>
+        <p>获取所有设备最新数据：</p>
+        <div class="endpoint">GET /api/devices</div>
+    </div>
+
+    <div class="card">
+        <h3>🤖 AI 对话 API</h3>
+        <p>与豆包大模型对话：</p>
+        <div class="endpoint">POST /api/ai</div>
+    </div>
+
+    <div class="card">
+        <h3>📱 当前状态</h3>
+        <p id="status">正在检查...</p>
+    </div>
+
+    <script>
+        fetch('/api/devices')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('status').innerHTML =
+                    '设备数量: <span class="green">' + data.length + '</span><br>' +
+                    '服务状态: <span class="green">运行中</span>';
+            })
+            .catch(() => {
+                document.getElementById('status').innerHTML =
+                    '<span class="gray">无法连接服务</span>';
+            });
+    </script>
+</body>
+</html>
