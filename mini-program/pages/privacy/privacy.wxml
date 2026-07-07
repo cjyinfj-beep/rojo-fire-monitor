@@ -1,0 +1,25 @@
+<view class="container">
+  <view style="padding:20rpx 0;">
+    <button class="btn-primary" style="width:auto;padding:16rpx 32rpx;font-size:26rpx;" bindtap="goBack">← 返回</button>
+  </view>
+  <view class="card">
+    <view class="card-title">隐私政策</view>
+    <view style="font-size:28rpx;color:#888;line-height:1.8;">
+      <view style="margin-bottom:20rpx;">本小程序（"消防监测系统"）尊重并保护所有用户的隐私权。本隐私政策将帮助您了解我们如何收集、使用和保护您的个人信息。</view>
+      <view style="font-weight:bold;color:#fff;margin:20rpx 0 10rpx;">一、信息收集</view>
+      <view style="margin-bottom:15rpx;">1. 设备数据：本小程序通过连接消防监测设备，收集温度、距离、颜色传感器等环境数据，用于消防安全监测。</view>
+      <view style="margin-bottom:15rpx;">2. 网络信息：为了与后端服务通信，我们会使用您的网络连接。</view>
+      <view style="font-weight:bold;color:#fff;margin:20rpx 0 10rpx;">二、信息使用</view>
+      <view style="margin-bottom:15rpx;">我们收集的数据仅用于：</view>
+      <view style="margin-bottom:10rpx;">• 实时监测消防设备状态</view>
+      <view style="margin-bottom:10rpx;">• 异常情况告警提醒</view>
+      <view style="margin-bottom:15rpx;">• 通过AI助手分析设备数据并提供建议</view>
+      <view style="font-weight:bold;color:#fff;margin:20rpx 0 10rpx;">三、信息共享</view>
+      <view style="margin-bottom:15rpx;">我们不会将您的任何数据分享给第三方，所有数据仅存储在您的本地服务器中。</view>
+      <view style="font-weight:bold;color:#fff;margin:20rpx 0 10rpx;">四、信息安全</view>
+      <view style="margin-bottom:15rpx;">我们采用合理的安全措施保护您的数据安全，但请注意网络传输始终存在一定风险。</view>
+      <view style="font-weight:bold;color:#fff;margin:20rpx 0 10rpx;">五、联系我们</view>
+      <view>如您对本隐私政策有任何疑问，请通过小程序反馈功能联系我们。</view>
+    </view>
+  </view>
+</view>

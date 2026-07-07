@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/alarm/alarm",
+    "pages/ai/ai",
+    "pages/privacy/privacy"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0a0e1a",
+    "navigationBarTitleText": "消防监测系统",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0a0e1a"
+  },
+  "tabBar": {
+    "backgroundColor": "#0a0e1a",
+    "borderStyle": "black",
+    "color": "#666",
+    "selectedColor": "#4caf50",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_selected.png"
+      },
+      {
+        "pagePath": "pages/alarm/alarm",
+        "text": "告警",
+        "iconPath": "images/tabbar/alarm.png",
+        "selectedIconPath": "images/tabbar/alarm_selected.png"
+      },
+      {
+        "pagePath": "pages/ai/ai",
+        "text": "AI",
+        "iconPath": "images/tabbar/ai.png",
+        "selectedIconPath": "images/tabbar/ai_selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}

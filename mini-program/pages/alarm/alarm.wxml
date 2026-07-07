@@ -1,0 +1,33 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading">正在加载告警数据...</view>
+  <view wx:elif="{{error}}" class="error">{{error}}<view style="margin-top:20rpx;"><button class="btn-primary" bindtap="refresh">重试</button></view></view>
+  <view wx:elif="{{alarms.length === 0}}" class="empty">
+    <view style="font-size:80rpx;margin-bottom:20rpx;">✅</view>
+    <view>暂无告警，一切正常</view>
+  </view>
+  <block wx:for="{{alarms}}" wx:key="id">
+    <view class="card" style="border-left:6rpx solid #f44336;">
+      <view class="card-title status-danger">🚨 {{item.id}}</view>
+      <view class="card-label">{{item.location}}</view>
+      <view style="display:flex;justify-content:space-between;margin-top:20rpx;text-align:center;">
+        <view>
+          <view class="card-value {{item._tempClass}}">{{item.temperature}}<text class="card-unit">°C</text></view>
+          <view class="card-label">温度</view>
+        </view>
+        <view>
+          <view class="card-value {{item._distClass}}">{{item.distance}}<text class="card-unit">cm</text></view>
+          <view class="card-label">距离</view>
+        </view>
+        <view>
+          <view class="card-value {{item._colorClass}}">{{item.color_status || '未知'}}</view>
+          <view class="card-label">颜色</view>
+        </view>
+        <view>
+          <view class="card-value {{item._statusClass}}">异常</view>
+          <view class="card-label">状态</view>
+        </view>
+      </view>
+      <view wx:if="{{item.alarm_reason}}" class="status-danger" style="margin-top:15rpx;font-size:28rpx;background:#3a1515;padding:16rpx;border-radius:8rpx;">⚠️ {{item.alarm_reason}}</view>
+    </view>
+  </block>
+</view>

@@ -1,15 +1,15 @@
-# Build artifacts
+# Build artifacts (auto-generated, not needed for source)
 rojo-uniapp/unpackage/
 rojo-uniapp/node_modules/
 rojo-uniapp/.hbuilderx/
 
-# Backend
+# Python cache
 rojo-backend/__pycache__/
 rojo-backend/*.pyc
 rojo-backend/.env
 rojo-backend/venv/
 
-# General
-.DS_Store
+# Temporary / local-only files
 *.log
+.DS_Store
 Thumbs.db

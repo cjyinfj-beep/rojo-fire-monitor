@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>设备详情 - EX-001</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f6fa;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 12px;
+  padding-bottom: 40px;
+}
+
+/* 返回按钮 */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+/* 头部卡片 */
+.header-card {
+  background: linear-gradient(135deg, #fff 0%, #fff8f8 100%);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.device-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.device-loc {
+  font-size: 14px;
+  color: #999;
+  margin-top: 6px;
+  display: block;
+}
+
+.status-tag {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag-normal {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.tag-alarm {
+  background: #fff2f0;
+  color: #ff4d4f;
+}
+
+/* 大数据展示 */
+.big-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.big-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.big-value {
+  font-size: 56px;
+  font-weight: bold;
+  line-height: 1;
+  color: #52c41a;
+}
+
+.big-unit {
+  font-size: 18px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.big-label {
+  font-size: 15px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.big-divider {
+  width: 1px;
+  background: #eee;
+}
+
+/* 颜色传感器 */
+.color-section {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  gap: 12px;
+}
+
+.color-label {
+  font-size: 15px;
+  color: #666;
+}
+
+.color-preview {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid #eee;
+  background: rgb(80, 180, 100);
+}
+
+.color-text {
+  font-size: 17px;
+  font-weight: 500;
+  color: #52c41a;
+}
+
+.color-rgb {
+  font-size: 13px;
+  color: #999;
+}
+
+/* 趋势图卡片 */
+.chart-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.time-tabs {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.time-tab {
+  padding: 6px 16px;
+  font-size: 13px;
+  color: #666;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.time-tab.active {
+  background: #fff;
+  color: #ff6b6b;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 200px;
+  background: #fafafa;
+  border-radius: 12px;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  gap: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #666;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+}
+
+/* 控制面板 */
+.control-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.control-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ctrl-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  background: #f8f8f8;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #666;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 8px;
+}
+
+.ctrl-btn:hover {
+  background: #f0f0f0;
+}
+
+.ctrl-btn.primary {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  color: #fff;
+}
+
+.ctrl-btn.primary:hover {
+  opacity: 0.9;
+}
+
+.btn-icon {
+  font-size: 24px;
+}
+
+/* 链接卡片 */
+.link-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  color: #333;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-decoration: none;
+}
+
+.link-arrow {
+  font-size: 24px;
+  color: #ccc;
+}
+
+/* 底部信息 */
+.footer-info {
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-info p {
+  font-size: 12px;
+  color: #bbb;
+  margin: 6px 0;
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">&#9664; 返回设备列表</a>
+
+<!-- 头部卡片 -->
+<div class="header-card">
+  <div class="header-top">
+    <div>
+      <span class="device-title">EX-001</span>
+      <span class="device-loc">&#128205; A栋 1F 大厅</span>
+    </div>
+    <span class="status-tag tag-normal">&#10004; 正常运行</span>
+  </div>
+
+  <!-- 实时数据大卡片 -->
+  <div class="big-stats">
+    <div class="big-stat">
+      <span class="big-value" style="color:#52c41a">27.2</span>
+      <span class="big-unit">&#8451;</span>
+      <span class="big-label">温度</span>
+    </div>
+    <div class="big-divider"></div>
+    <div class="big-stat">
+      <span class="big-value">3.5</span>
+      <span class="big-unit">cm</span>
+      <span class="big-label">距离</span>
+    </div>
+  </div>
+
+  <!-- 颜色传感器 -->
+  <div class="color-section">
+    <span class="color-label">颜色传感器</span>
+    <div class="color-preview" style="background:rgb(80,180,100)"></div>
+    <span class="color-text" style="color:#52c41a">Green</span>
+    <span class="color-rgb">R:80 G:180 B:100</span>
+  </div>
+</div>
+
+<!-- 历史趋势图 -->
+<div class="chart-card">
+  <div class="chart-header">
+    <span class="chart-title">&#128200; 历史趋势</span>
+    <div class="time-tabs">
+      <span class="time-tab active">24小时</span>
+      <span class="time-tab">3天</span>
+      <span class="time-tab">7天</span>
+    </div>
+  </div>
+  
+  <canvas id="trendChart" class="chart-canvas" width="380" height="200"></canvas>
+
+  <div class="chart-legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#ff6b6b"></div>
+      <span>温度 (&#8451;)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#1890ff"></div>
+      <span>距离 (cm)</span>
+    </div>
+  </div>
+</div>
+
+<!-- 控制面板 -->
+<div class="control-card">
+  <span class="card-title">&#127918; 设备控制</span>
+  <div class="control-btns">
+    <button class="ctrl-btn primary">
+      <span class="btn-icon">&#128276;</span>
+      <span>开启蜂鸣器</span>
+    </button>
+    <button class="ctrl-btn">
+      <span class="btn-icon">&#128277;</span>
+      <span>关闭蜂鸣器</span>
+    </button>
+    <button class="ctrl-btn">
+      <span class="btn-icon">&#128161;</span>
+      <span>开启LED</span>
+    </button>
+    <button class="ctrl-btn">
+      <span class="btn-icon">&#128161;</span>
+      <span>关闭LED</span>
+    </button>
+  </div>
+</div>
+
+<!-- 报警记录入口 -->
+<a href="alarms.html" class="link-card">
+  <span>&#128680; 查看报警记录</span>
+  <span class="link-arrow">&#8250;</span>
+</a>
+
+<!-- 底部信息 -->
+<div class="footer-info">
+  <p>设备ID: EX-001</p>
+  <p>启动次数: 375</p>
+  <p>更新于 2026-07-03 15:30:22</p>
+</div>
+
+<script>
+// 绘制趋势图（与之前相同）
+const canvas = document.getElementById('trendChart');
+const ctx = canvas.getContext('2d');
+const w = canvas.width;
+const h = canvas.height;
+const pad = 30;
+
+const hours = 24;
+const tempData = [];
+const distData = [];
+for (let i = 0; i < hours; i++) {
+  tempData.push(22 + Math.random() * 8 + Math.sin(i / 4) * 3);
+  distData.push(2 + Math.random() * 4 + Math.cos(i / 3) * 1.5);
+}
+
+const minT = Math.min(...tempData) * 0.9;
+const maxT = Math.max(...tempData) * 1.1;
+const minD = Math.min(...distData) * 0.9;
+const maxD = Math.max(...distData) * 1.1;
+
+ctx.clearRect(0, 0, w, h);
+ctx.strokeStyle = '#eee';
+ctx.lineWidth = 1;
+for (let i = 0; i <= 4; i++) {
+  const y = pad + ((h - pad * 2) / 4) * i;
+  ctx.beginPath();
+  ctx.moveTo(pad, y);
+  ctx.lineTo(w - pad, y);
+  ctx.stroke();
+}
+
+ctx.strokeStyle = '#ff6b6b';
+ctx.lineWidth = 2;
+ctx.beginPath();
+tempData.forEach((val, i) => {
+  const x = pad + ((w - pad * 2) / (tempData.length - 1)) * i;
+  const y = pad + (h - pad * 2) - ((val - minT) / (maxT - minT)) * (h - pad * 2);
+  if (i === 0) ctx.moveTo(x, y);
+  else ctx.lineTo(x, y);
+});
+ctx.stroke();
+
+ctx.fillStyle = '#ff6b6b';
+tempData.forEach((val, i) => {
+  const x = pad + ((w - pad * 2) / (tempData.length - 1)) * i;
+  const y = pad + (h - pad * 2) - ((val - minT) / (maxT - minT)) * (h - pad * 2);
+  ctx.beginPath();
+  ctx.arc(x, y, 3, 0, Math.PI * 2);
+  ctx.fill();
+});
+
+ctx.strokeStyle = '#1890ff';
+ctx.lineWidth = 2;
+ctx.beginPath();
+distData.forEach((val, i) => {
+  const x = pad + ((w - pad * 2) / (distData.length - 1)) * i;
+  const y = pad + (h - pad * 2) - ((val - minD) / (maxD - minD)) * (h - pad * 2);
+  if (i === 0) ctx.moveTo(x, y);
+  else ctx.lineTo(x, y);
+});
+ctx.stroke();
+
+ctx.fillStyle = '#1890ff';
+distData.forEach((val, i) => {
+  const x = pad + ((w - pad * 2) / (distData.length - 1)) * i;
+  const y = pad + (h - pad * 2) - ((val - minD) / (maxD - minD)) * (h - pad * 2);
+  ctx.beginPath();
+  ctx.arc(x, y, 3, 0, Math.PI * 2);
+  ctx.fill();
+});
+</script>
+
+</body>
+</html>

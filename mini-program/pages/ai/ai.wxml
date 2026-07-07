@@ -1,0 +1,20 @@
+<view class="container" style="display:flex;flex-direction:column;height:100vh;padding:0;">
+  <scroll-view scroll-y style="flex:1;padding:20rpx;" scroll-into-view="msg-{{messages.length-1}}">
+    <block wx:for="{{messages}}" wx:key="index">
+      <view id="msg-{{index}}" style="margin-bottom:20rpx;display:flex;{{item.role==='user'?'justify-content:flex-end;':'justify-content:flex-start;'}}">
+        <view style="max-width:75%;padding:20rpx 24rpx;border-radius:16rpx;font-size:28rpx;line-height:1.6;{{item.role==='user'?'background:#4caf50;color:#fff;':'background:#151d2f;color:#fff;'}}">
+          {{item.content}}
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{loading}}" style="display:flex;justify-content:flex-start;margin-bottom:20rpx;">
+      <view style="background:#151d2f;padding:20rpx 24rpx;border-radius:16rpx;">
+        <view class="loading">AI 思考中...</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view style="padding:20rpx;background:#0a0e1a;border-top:1rpx solid #1a2340;display:flex;gap:16rpx;align-items:center;">
+    <input class="input-field" style="flex:1;" placeholder="输入问题..." value="{{inputValue}}" bindinput="onInput" confirm-type="send" bindconfirm="sendMessage" />
+    <button class="btn-primary" style="width:auto;padding:20rpx 40rpx;" bindtap="sendMessage">发送</button>
+  </view>
+</view>
