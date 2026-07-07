@@ -1,0 +1,15 @@
+# Build artifacts
+rojo-uniapp/unpackage/
+rojo-uniapp/node_modules/
+rojo-uniapp/.hbuilderx/
+
+# Backend
+rojo-backend/__pycache__/
+rojo-backend/*.pyc
+rojo-backend/.env
+rojo-backend/venv/
+
+# General
+.DS_Store
+*.log
+Thumbs.db
