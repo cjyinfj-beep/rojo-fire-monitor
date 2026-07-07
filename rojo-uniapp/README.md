@@ -53,7 +53,7 @@ rojo-uniapp/
 
 ```javascript
 // 开发测试（需开启不校验域名）
-const BASE_URL = 'http://<YOUR_SERVER_IP>';
+const BASE_URL = 'http://139.196.153.51';
 
 // 正式部署（配置 SSL 证书后）
 // const BASE_URL = 'https://你的域名';
@@ -73,7 +73,7 @@ const BASE_URL = 'http://<YOUR_SERVER_IP>';
 
 HBuilderX → 运行 → 运行到浏览器 → Chrome
 
-H5 没有 HTTPS 限制，可以直接访问 `http://<YOUR_SERVER_IP>`
+H5 没有 HTTPS 限制，可以直接访问 `http://139.196.153.51`
 
 ## 📱 页面功能
 
@@ -196,6 +196,6 @@ const BASE_URL = 'https://你的域名';
 ## 📞 技术支持
 
 如有问题，检查：
-1. 后端是否正常运行：`curl http://<YOUR_SERVER_IP>/api/health`
+1. 后端是否正常运行：`curl http://139.196.153.51/api/health`
 2. EMQX 规则引擎是否配置正确
 3. 小程序 AppID 是否正确配置

@@ -49,7 +49,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.3.0",
-  "appid": "<YOUR_APPID>",
+  "appid": "wx0ad15c1e6c546b3a",
   "projectname": "fire-monitor",
   "condition": {},
   "editorSetting": {

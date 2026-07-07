@@ -11,8 +11,8 @@ import paho.mqtt.client as mqtt
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://user:password@localhost:5432/rojo_fire")
-EMQX_HOST = os.environ.get("EMQX_HOST", "localhost")
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://rojo:rojo123@localhost:5432/rojo_fire")
+EMQX_HOST = os.environ.get("EMQX_HOST", "139.196.153.51")
 EMQX_PORT = int(os.environ.get("EMQX_PORT", "1883"))
 
 device_cache = {}

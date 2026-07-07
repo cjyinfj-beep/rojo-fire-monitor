@@ -16,7 +16,7 @@ rojo-backend/
 
 ### 第一步：重置服务器密码（2分钟）
 
-1. 阿里云控制台 → 你的实例 `<YOUR_SERVER_NAME>`
+1. 阿里云控制台 → 你的实例 `Ubuntu-rojo`
 2. 点击 **"重置密码"**
 3. 设置一个密码（建议用你能记住的，比如 `Rojo1234!`）
 4. 确认后等待实例重启（状态变回"运行中"）
@@ -26,13 +26,13 @@ rojo-backend/
 在你的电脑上打开 **Git Bash**（右键桌面 → Git Bash Here），执行：
 
 ```bash
-ssh root@<YOUR_SERVER_IP>
+ssh root@139.196.153.51
 # 输入你刚才设置的密码
 ```
 
 成功连接后，你会看到类似：
 ```
-root@<YOUR_SERVER_NAME>:~#
+root@Ubuntu-rojo:~#
 ```
 
 ### 第三步：上传代码到服务器（1分钟）
@@ -41,10 +41,10 @@ root@<YOUR_SERVER_NAME>:~#
 
 ```bash
 # 进入代码目录
-cd /path/to/rojo-backend
+cd C:/Users/CJY/Documents/kimi/workspace/rojo-backend
 
 # 用 SCP 上传到服务器
-scp -r . root@<YOUR_SERVER_IP>:/root/rojo-backend
+scp -r . root@139.196.153.51:/root/rojo-backend
 ```
 
 输入密码，等待上传完成。
@@ -65,7 +65,7 @@ sudo ./install.sh
 
 ### 第五步：阿里云放行 80 端口（1分钟）
 
-1. 阿里云控制台 → 你的实例 `<YOUR_SERVER_NAME>`
+1. 阿里云控制台 → 你的实例 `Ubuntu-rojo`
 2. 左侧菜单 → **"安全组"** 或 **"防火墙"**
 3. 点击 **"添加规则"**
 4. 配置：
@@ -79,7 +79,7 @@ sudo ./install.sh
 
 在浏览器访问：
 ```
-http://<YOUR_SERVER_IP>/api/health
+http://139.196.153.51/api/health
 ```
 
 如果返回 `{"status": "ok"}`，说明部署成功！🎉
@@ -90,7 +90,7 @@ http://<YOUR_SERVER_IP>/api/health
 
 部署成功后，还需要让 EMQX 把设备数据推送到后端：
 
-1. 打开 EMQX Dashboard：`http://<YOUR_SERVER_IP>:18083`
+1. 打开 EMQX Dashboard：`http://139.196.153.51:18083`
 2. 左侧菜单 → **数据集成** → **规则**
 3. 点击 **创建**
 4. **SQL** 填入：
@@ -104,7 +104,7 @@ http://<YOUR_SERVER_IP>/api/health
    - **Body**：`${payload}`
 6. 保存规则
 
-设备发数据后，访问 `http://<YOUR_SERVER_IP>/api/devices` 就能看到数据了。
+设备发数据后，访问 `http://139.196.153.51/api/devices` 就能看到数据了。
 
 ---
 
@@ -149,5 +149,5 @@ systemctl restart nginx
 
 1. **不要删除 `/root/rojo-backend` 文件夹**，否则服务会停止
 2. **修改代码后需要重启服务**：`supervisorctl restart rojo-backend`
-3. **数据库密码**默认是 `<YOUR_PASSWORD>`，生产环境建议修改
-4. **小程序访问**需要在微信公众平台把 `http://<YOUR_SERVER_IP>` 加入白名单
+3. **数据库密码**默认是 `rojo123`，生产环境建议修改
+4. **小程序访问**需要在微信公众平台把 `http://139.196.153.51` 加入白名单

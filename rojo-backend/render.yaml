@@ -11,7 +11,7 @@ services:
           name: rojo-db
           property: connectionString
       - key: EMQX_HOST
-        value: <YOUR_EMQX_HOST>
+        value: 139.196.153.51
       - key: EMQX_PORT
         value: 1883
 

@@ -18,7 +18,7 @@
 
 // ===== 修改这里 =====
 // 开发测试用 HTTP（需开启不校验域名）
-const BASE_URL = 'http://<YOUR_SERVER_IP>';
+const BASE_URL = 'http://139.196.153.51';
 
 // 正式部署后改为 HTTPS（配置 SSL 证书后）
 // const BASE_URL = 'https://你的域名';

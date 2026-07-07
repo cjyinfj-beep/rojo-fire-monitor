@@ -9,7 +9,7 @@
         "usingComponents" : true
     },
     "mp-weixin" : {
-        "appid" : "<YOUR_APPID>",
+        "appid" : "wx0ad15c1e6c546b3a",
         "setting" : {
             "urlCheck" : false
         },
